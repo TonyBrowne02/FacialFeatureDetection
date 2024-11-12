@@ -59,3 +59,11 @@ while True:
 # Release the capture and close windows
 cap.release()
 cv2.destroyAllWindows()
+
+
+
+"""
+cap = cv2.VideoCapture(file_path)
+    fps = cap.get(cv2.CAP_PROP_FPS)  # Get video frame rate
+    delay = int(1000 / fps)  # Calculate delay between frames for real-time display
+"""
