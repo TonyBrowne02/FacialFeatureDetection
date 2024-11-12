@@ -20,10 +20,10 @@ def detect_skin(image):
     return skin, skin_mask
 
 
-# In[28]:
+# In[37]:
 
 
-def get_skin_colour(image, skin_mask):
+def get_skin_colour(image):
     skin, skin_mask = detect_skin(image)
     
     # Calculate the avg color 
@@ -51,7 +51,7 @@ def increase_brightness(colour, factor = 1.675):
     return tuple(min(int(c * factor), 255) for c in colour)
 
 
-# In[33]:
+# In[40]:
 
 
 video = cv2.VideoCapture(0)
@@ -62,7 +62,7 @@ while True:
         break
         
     skin, skin_mask = detect_skin(image)
-    avg_colour = get_skin_colour(image, skin_mask)
+    avg_colour = get_skin_colour(image)
     brighten_colour = increase_brightness(avg_colour)
     draw_skin_colour(image, brighten_colour)
     
@@ -75,13 +75,12 @@ video.release()
 cv2.destroyAllWindows()
 
 
-# In[34]:
+# In[39]:
 
 
 image1 = cv2.VideoCapture(0)
 (check, image1) = image1.read()
-skin, skin_mask = detect_skin(image1)
-avg_colour = get_skin_colour(image1, skin_mask)
+avg_colour = get_skin_colour(image1)
 brighten_colour = increase_brightness(avg_colour)
 draw_skin_colour(image1, brighten_colour)
 cv2.imshow("Captured Image", image1)
